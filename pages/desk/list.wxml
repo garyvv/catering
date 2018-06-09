@@ -1,0 +1,8 @@
+<block wx:for="{{desks}}" wx:key="*this">
+    <navigator url="/pages/desk/qrcode?deskId={{ item.id }}" class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">{{ item.title }}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">打印二维码</view>
+    </navigator>
+</block>

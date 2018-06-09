@@ -1,0 +1,12 @@
+<view class="page">
+    <view class="item-photo">
+        <view class="page__title">{{ product.title }}</view>
+        <view class="page__desc">{{ product.price }}</view>
+        <view class="weui-article__h3">门店照片</view>
+        <block wx:for="{{product.images}}">
+            <view class='card-photo'>
+            <image class='card-photo' src="{{item.image}}" />
+            </view>
+        </block>
+    </view>
+</view>

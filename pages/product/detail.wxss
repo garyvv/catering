@@ -1,0 +1,11 @@
+.item-photo {
+    padding: 15px;
+}
+
+.card-photo image {
+    height: 180px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}

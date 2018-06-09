@@ -1,0 +1,5 @@
+/* pages/desk/qrcode.wxss */
+
+.share-image {
+    height: 240px;
+}
