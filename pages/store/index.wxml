@@ -1,0 +1,27 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+                    <image src="../../images/weui/images/pic_160.png" style="width: 50px; height: 50px; display: block"/>
+                </view>
+                <view class="weui-cell__bd">
+                    <view>新视觉烧烤店</view>
+                    <view style="font-size: 13px;color: #888888;">摘要信息</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="page__bd block-margin">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" wx:key="*this">
+                <navigator url="{{ item.pages }}" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="{{ item.image }}" />
+                    <view class="weui-grid__label">{{ item.name }}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+
+</view>
