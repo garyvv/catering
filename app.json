@@ -7,12 +7,14 @@
     "pages/desk/list",
     "pages/servant/list",
     "pages/desk/qrcode",
-    "pages/store/index"
+    "pages/store/index",
+    "pages/viewer/store",
+    "pages/viewer/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "LW餐饮",
+    "navigationBarTitleText": "粤西餐饮",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -32,7 +34,7 @@
         "pagePath": "pages/aboutme/start",
         "iconPath": "images/common/home.png",
         "selectedIconPath": "images/common/home-actived.png",
-        "text": "LikeWise"
+        "text": "头条"
       }
     ]
   }

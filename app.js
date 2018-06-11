@@ -1,6 +1,6 @@
 //app.js
 const Common = require('./utils/common.js')
-const WeChat = require('./utils/wechat.js')
+const WeChatSDK = require('./utils/wechat_sdk.js')
 
 App({
     onLaunch: function() {
@@ -12,7 +12,13 @@ App({
         console.log(Common.isNull(this.globalData.uid))
         if (Common.isNull(this.globalData.token) === true || Common.isNull(this.globalData.uid) === true) {
           console.log('未登录')
-          WeChat.userLogin()
+          WeChatSDK.userLogin()
+          .then((result) => {
+            console.log(result)
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
         }
       } catch (e) {
         console.log(e)
@@ -25,6 +31,7 @@ App({
         version: "1.0",
         token: null,
         uid: null,
+        storeId: 0,
         headers: {
           'content-type': 'application/json', // 默认值
           'mina-source': 'catering',
