@@ -1,10 +1,13 @@
 // pages/seller/index.js
+const app = getApp()
+const Api = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    storeId: 0,
     grids: [{
       image: '../../images/weui/images/icon_tabbar.png',
       name: '桌子二维码',
@@ -37,7 +40,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(app.globalData)
+    this.setData({
+      storeId: app.globalData.storeId
+    })
   },
 
   /**
@@ -87,5 +93,25 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo
+    })
+    e.detail.userInfo.uid = app.globalData.uid
+    Api.editCustomer(e.detail.userInfo)
+      .then((res) => {
+        console.log(res)
+        // 跳转填写页面
+        wx.navigateTo({
+          url: '/pages/store/apply?name=' + e.detail.userInfo.nickName + '&avatar=' + e.detail.userInfo.avatarUrl,
+        })
+      })
+      .catch(function (result) {
+        console.error(result)
+      })
+  },
 })

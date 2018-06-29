@@ -32,13 +32,6 @@ App({
         token: null,
         uid: null,
         storeId: 0,
-        headers: {
-          'content-type': 'application/json', // 默认值
-          'mina-source': 'catering',
-          'uid': null,
-          'token': null,
-          'store-id': 0
-        }
     },
 
     

@@ -9,13 +9,14 @@ module.exports = {
           if (res.code) {
             const app = getApp()
             Api.login(res)
-            .then((loginRes) => {
+            .then((result) => {
+              let loginRes = result.data
               console.log(loginRes)
               console.log('login...')
               //获取到用户凭证 存儲 3rd_session   
-              // wx.setStorageSync('token', loginRes.token)
-              // wx.setStorageSync('uid', loginRes.uid)
-              // wx.setStorageSync('storeId', loginRes.default_store)
+              wx.setStorageSync('token', loginRes.token)
+              wx.setStorageSync('uid', loginRes.uid)
+              wx.setStorageSync('storeId', loginRes.default_store)
               app.globalData.token = loginRes.token
               app.globalData.uid = loginRes.uid
               app.globalData.storeId = loginRes.default_store
@@ -39,7 +40,6 @@ module.exports = {
       success: function (res) {
         var userInfo = res.userInfo
         console.log(userInfo)
-        // Api.userInfoSetInSQL(userInfo)
       },
       fail: function () {
         console.log('获取用户信息失败')
