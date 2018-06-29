@@ -1,0 +1,52 @@
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+          <view class="weui-label">店铺头像</view>
+      </view>
+      <view class="weui-uploader__bd" style='padding: 10px'>
+        <view class="weui-uploader__file" style='float: none; margin: 0 auto' bindtap="chooseAvatar" id="avatar">
+            <image class="weui-uploader__img" style='margin: 0 auto' src="{{ sellerInfo.preview_avatar }}" mode="aspectFill" />
+        </view>
+    </view>              
+  </view>
+
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">店铺名</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindCompany" class="weui-input" value='{{ sellerInfo.company }}' placeholder="请输入店铺名"/>
+        </view>
+    </view>
+        <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">店铺地址</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindAddress" class="weui-input" value='{{ sellerInfo.address }}' placeholder="请输入店铺地址"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label">店铺电话</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindTel" class="weui-input" value='{{ sellerInfo.tel }}' placeholder="请输入店铺电话" />
+        </view>              
+    </view>
+
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label">营业执照</view>
+        </view>
+        <view class="weui-uploader__bd" style='padding: 10px'>
+          <view class="weui-uploader__file" style='float: none; margin: 0 auto' bindtap="chooseLicense" id="license">
+              <image wx:if="{{ sellerInfo.preview_license }}" class="weui-uploader__img" style='margin: 0 auto' src="{{ sellerInfo.preview_license }}" mode="aspectFill" />
+              <image wx:else class="weui-uploader__img" style='margin: 0 auto' src="/images/common/card-photo.png" mode="aspectFill" />
+          </view>
+      </view>              
+    </view>
+</view>
+<view class="weui-cells__tips">底部说明文字底部说明文字</view>
+
+<button class="weui-btn" type="primary" bindtap="submitApply">确认提交</button>

@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" wx:if="{{ storeId > 0 }}">
     <view class="page__bd">
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
@@ -6,7 +6,7 @@
                     <image src="../../images/weui/images/pic_160.png" style="width: 50px; height: 50px; display: block"/>
                 </view>
                 <view class="weui-cell__bd">
-                    <view>新视觉烧烤店</view>
+                    <view>新视觉烧烤店{{ storeId }}</view>
                     <view style="font-size: 13px;color: #888888;">摘要信息</view>
                 </view>
             </view>
@@ -24,4 +24,7 @@
         </view>
     </view>
 
+</view>
+<view wx:else>
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">申请开店</button>
 </view>

@@ -24,13 +24,30 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "申请开店",
+					"pathName": "pages/store/apply",
+					"query": "name=新视觉烧烤&avatar=https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo13vc2RhqKyJI8f5qaGCcj2ZeRfic696O0a2PDZvJ2JrGL8ia8EJHA6KjR37ia2neD11IBcNJ4HianZg/132"
+				},
+				{
+					"id": -1,
+					"name": "二维码-开店审核",
+					"pathName": "pages/common/qrcode",
+					"query": "action=apply_seller&action_id=1"
+				}
+			]
 		}
 	}
 }

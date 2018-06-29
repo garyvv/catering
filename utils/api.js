@@ -1,5 +1,5 @@
-const SERVER = 'http://sharp.local.com/'
-// const SERVER = 'https://garylv.com/'
+// const SERVER = 'http://sharp.local.com/'
+const SERVER = 'https://garylv.com/'
 
 const CODE_NEED_LOGIN = 3001
 
@@ -11,6 +11,25 @@ const API_LIST = {
       code: options.code
     }),
     needLogin: false
+  },
+  editCustomer: {
+    method: 'PUT',
+    urlMaker: options => SERVER + 'api/catering/v1/customers/' + options.uid,
+    dataMaker: options => options
+  },
+  customerOss: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/customers/:uid/oss',
+    dataMaker: options => options,
+    uploadApi: true,
+    headerMaker: options => ({
+      'content-type': 'multipart/form-data'
+    })
+  },
+  applySeller: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/customers/:uid/sellers',
+    dataMaker: options => options,
   },
 }
 
@@ -27,7 +46,8 @@ class API {
         dataMaker: config.dataMaker,
         method: config.method,
         headerMaker: config.headerMaker,
-        needLogin: config.needLogin
+        needLogin: config.needLogin,
+        uploadApi: config.uploadApi
       })
     }
   }
@@ -87,43 +107,82 @@ function getHeader(replace = {}) {
   }
   return header
 }
-function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, needLogin = true }) { // 默认所有API都需要登录
+
+function getUid() {
+  const app = getApp()
+  return app.globalData.uid
+}
+
+function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, needLogin = true, uploadApi = false }) { // 默认所有API都需要登录
   let NORMAL_API = null
   return NORMAL_API = (options) => {
     const PURE_API = () => {
       return new Promise((resolve, reject) => {
-        wx.request({
-          url: urlMaker(options),
-          method: method,
-          data: dataMaker && dataMaker(options),
-          header: headerMaker ? headerMaker(options) : getHeader(),
-          success: res => {
-            let result = res.data
-            if (result.success === true) {
-              resolve(result.data)
-            } else {
-              if (result.code === CODE_NEED_LOGIN) {
-                // 重定向
-
-                // maka
-                // const LOGIN = require('./utils/login.js').default
-                // LOGIN.forceLoginByWx().then(() => NORMAL_API(options)).then(resolve).catch(reject)
+        if (uploadApi) {
+          wx.uploadFile({
+            url: urlMaker(options).replace(':uid', getUid()),
+            filePath: dataMaker && dataMaker(options).file_path,
+            name: 'content',
+            header: headerMaker ? getHeader(headerMaker(options)) : getHeader(),
+            formData: dataMaker && dataMaker(options),
+            success: function (res) {
+              var result = JSON.parse(res.data)
+              if (result.success === true) {
+                resolve(result)
               } else {
-                wx.showToast({
-                  title: result.message,
-                  icon: 'loading',
-                  image: '/images/common/error.png',
-                  duration: 3000
-                })
-                reject(result)
+                if (result.code === CODE_NEED_LOGIN) {
+                  // 重定向
+
+                  // maka
+                  // const LOGIN = require('./utils/login.js').default
+                  // LOGIN.forceLoginByWx().then(() => NORMAL_API(options)).then(resolve).catch(reject)
+                } else {
+                  wx.showToast({
+                    title: result.msg,
+                    icon: 'loading',
+                    image: '/images/common/error.png',
+                    duration: 3000
+                  })
+                  reject(result)
+                }
               }
+              //do something
             }
-          },
-          fail: res => {
-            let result = res.data
-            reject(result)
-          }
-        })
+          })
+        } else {
+          wx.request({
+            url: urlMaker(options).replace(':uid', getUid()),
+            method: method,
+            data: dataMaker && dataMaker(options),
+            header: headerMaker ? headerMaker(options) : getHeader(),
+            success: res => {
+              let result = res.data
+              if (result.success === true) {
+                resolve(result)
+              } else {
+                if (result.code === CODE_NEED_LOGIN) {
+                  // 重定向
+
+                  // maka
+                  // const LOGIN = require('./utils/login.js').default
+                  // LOGIN.forceLoginByWx().then(() => NORMAL_API(options)).then(resolve).catch(reject)
+                } else {
+                  wx.showToast({
+                    title: result.msg,
+                    icon: 'loading',
+                    image: '/images/common/error.png',
+                    duration: 3000
+                  })
+                  reject(result)
+                }
+              }
+            },
+            fail: res => {
+              let result = res.data
+              reject(result)
+            }
+          })
+        }
       })
     }
     // if (needLogin) {
@@ -134,47 +193,3 @@ function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, n
     // }
   }
 }
-
-// module.exports = {
-
-//   login: function (res) {
-//     const app = getApp()
-//     const self = this
-//     return new Promise((resolve, reject) => {
-//       //发起网络请求  
-//       wx.request({
-//         url: SERVER + API_LOGIN,
-//         header: app.globalData.headers,
-//         method: 'POST',
-//         data: {
-//           code: res.code
-//         },
-//         success: function (res) {
-//           console.log(res)
-//           if (checkApi(res.data)) {
-//             var token = res.data.data.token
-//             var uid = res.data.data.uid
-//             var storeId = res.data.data.default_store
-//             console.log(token)
-
-//             //获取到用户凭证 存儲 3rd_session   
-//             wx.setStorageSync('token', token)
-//             wx.setStorageSync('uid', res.data.data.uid)
-//             wx.setStorageSync('storeId', res.data.data.default_store)
-//             app.globalData.token = token
-//             app.globalData.uid = uid
-//             app.globalData.storeId = storeId
-
-//             return true
-//           } else {
-//             console.log('check api false')
-//             return false
-//           }
-//         },
-//         fail: function (res) {
-
-//         }
-//       })
-//     })
-
-//   },

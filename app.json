@@ -1,15 +1,17 @@
 {
   "pages": [
-    "pages/seller/index",
+    "pages/store/index",
     "pages/aboutme/start",
     "pages/product/list",
     "pages/product/detail",
     "pages/desk/list",
     "pages/servant/list",
     "pages/desk/qrcode",
-    "pages/store/index",
+    "pages/seller/index",
     "pages/viewer/store",
-    "pages/viewer/index"
+    "pages/viewer/index",
+    "pages/store/apply",
+    "pages/common/qrcode"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,7 +27,7 @@
     "box-shadow": "0 0 6px 0",
     "list": [
       {
-        "pagePath": "pages/seller/index",
+        "pagePath": "pages/store/index",
         "iconPath": "images/common/location.png",
         "selectedIconPath": "images/common/location-actived.png",
         "text": "我的店铺"
