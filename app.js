@@ -34,6 +34,8 @@ App({
         storeId: 0,
     },
 
-    
+    setStoreId: function (storeId) {
+      this.globalData.storeId = storeId
+    },
     
 })

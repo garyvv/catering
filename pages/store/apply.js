@@ -24,7 +24,7 @@ Page({
     console.log(options)
     let updateData = this.data.sellerInfo
     updateData.company = options.name
-    updateData.preview_avatar = options.avatar
+    updateData.preview_avatar = options.avatar + '?x-oss-process=style/preview'
     updateData.avatar = options.avatar
     this.setData({
       sellerInfo: updateData
@@ -96,7 +96,7 @@ Page({
             console.log(res)
             let updateData = that.data.sellerInfo
             updateData.avatar = res.data.object
-            updateData.preview_avatar = res.data.url
+            updateData.preview_avatar = res.data.url + '?x-oss-process=style/preview'
             that.setData({
               sellerInfo: updateData
             })
@@ -122,7 +122,7 @@ Page({
           .then((res) => {
             let updateData = that.data.sellerInfo
             updateData.license = res.data.object
-            updateData.preview_license = res.data.url
+            updateData.preview_license = res.data.url + '?x-oss-process=style/preview'
             that.setData({
               sellerInfo: updateData
             })

@@ -11,7 +11,10 @@
     "pages/viewer/store",
     "pages/viewer/index",
     "pages/store/apply",
-    "pages/common/qrcode"
+    "pages/common/qrcode",
+    "pages/admin/seller/audit",
+    "pages/common/login",
+    "pages/category/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
