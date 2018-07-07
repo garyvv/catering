@@ -1,9 +1,10 @@
-// const SERVER = 'http://sharp.local.com/'
-const SERVER = 'https://garylv.com/'
+const SERVER = 'http://sharp.local.com/'
+// const SERVER = 'https://garylv.com/'
 
 const CODE_NEED_LOGIN = 3001
 
 const API_LIST = {
+  // 登录
   login: {
     method: 'POST',
     urlMaker: options => SERVER + 'api/catering/v1/sessions',
@@ -12,11 +13,13 @@ const API_LIST = {
     }),
     needLogin: false
   },
+  // 编辑用户信息
   editCustomer: {
     method: 'PUT',
     urlMaker: options => SERVER + 'api/catering/v1/customers/' + options.uid,
     dataMaker: options => options
   },
+  // 用户OSS
   customerOss: {
     method: 'POST',
     urlMaker: options => SERVER + 'api/catering/v1/customers/:uid/oss',
@@ -26,9 +29,22 @@ const API_LIST = {
       'content-type': 'multipart/form-data'
     })
   },
+  // 申请商家
   applySeller: {
     method: 'POST',
     urlMaker: options => SERVER + 'api/catering/v1/customers/:uid/sellers',
+    dataMaker: options => options,
+  },
+  // 用户信息
+  customerInfo: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/customers/:uid',
+    dataMaker: options => options,
+  },
+  // 商铺信息
+  storeInfo: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId',
     dataMaker: options => options,
   },
 }
@@ -113,6 +129,11 @@ function getUid() {
   return app.globalData.uid
 }
 
+function getStoreId() {
+  const app = getApp()
+  return app.globalData.storeId
+}
+
 function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, needLogin = true, uploadApi = false }) { // 默认所有API都需要登录
   let NORMAL_API = null
   return NORMAL_API = (options) => {
@@ -120,7 +141,7 @@ function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, n
       return new Promise((resolve, reject) => {
         if (uploadApi) {
           wx.uploadFile({
-            url: urlMaker(options).replace(':uid', getUid()),
+            url: urlMaker(options).replace(':uid', getUid()).replace(':storeId', getStoreId()),
             filePath: dataMaker && dataMaker(options).file_path,
             name: 'content',
             header: headerMaker ? getHeader(headerMaker(options)) : getHeader(),
@@ -131,11 +152,11 @@ function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, n
                 resolve(result)
               } else {
                 if (result.code === CODE_NEED_LOGIN) {
+                  console.log('need login ....')
                   // 重定向
-
-                  // maka
-                  // const LOGIN = require('./utils/login.js').default
-                  // LOGIN.forceLoginByWx().then(() => NORMAL_API(options)).then(resolve).catch(reject)
+                  wx.redirectTo({
+                    url: '/pages/common/login',
+                  })
                 } else {
                   wx.showToast({
                     title: result.msg,
@@ -151,7 +172,7 @@ function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, n
           })
         } else {
           wx.request({
-            url: urlMaker(options).replace(':uid', getUid()),
+            url: urlMaker(options).replace(':uid', getUid()).replace(':storeId', getStoreId()),
             method: method,
             data: dataMaker && dataMaker(options),
             header: headerMaker ? headerMaker(options) : getHeader(),
@@ -161,11 +182,11 @@ function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, n
                 resolve(result)
               } else {
                 if (result.code === CODE_NEED_LOGIN) {
+                  console.log('need login ....')
                   // 重定向
-
-                  // maka
-                  // const LOGIN = require('./utils/login.js').default
-                  // LOGIN.forceLoginByWx().then(() => NORMAL_API(options)).then(resolve).catch(reject)
+                  wx.navigateTo({
+                    url: '/pages/common/login',
+                  })
                 } else {
                   wx.showToast({
                     title: result.msg,

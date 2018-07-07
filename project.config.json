@@ -46,6 +46,12 @@
 					"name": "二维码-开店审核",
 					"pathName": "pages/common/qrcode",
 					"query": "action=apply_seller&action_id=1"
+				},
+				{
+					"id": 2,
+					"name": "登录",
+					"pathName": "pages/common/login",
+					"query": "url=/pages/store/index"
 				}
 			]
 		}

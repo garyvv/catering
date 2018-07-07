@@ -8,7 +8,13 @@ Page({
    */
   data: {
     storeId: 0,
+    storeInfo: {},
     grids: [{
+      image: '../../images/weui/images/icon_tabbar.png',
+      name: '菜单分类',
+      pages: '/pages/category/index'
+    },
+    {
       image: '../../images/weui/images/icon_tabbar.png',
       name: '桌子二维码',
       pages: '/pages/desk/list'
@@ -41,9 +47,29 @@ Page({
    */
   onLoad: function (options) {
     console.log(app.globalData)
-    this.setData({
-      storeId: app.globalData.storeId
-    })
+    let self = this
+    Api.customerInfo()
+      .then((res) => {
+        console.log(res)
+        self.setData({
+          storeId: res.data.default_store
+        })
+        if (res.data.default_store > 0) {
+          const app = getApp()
+          app.setStoreId(res.data.default_store)
+          Api.storeInfo()
+            .then( res => {
+              console.log(res)
+              self.setData({
+                storeInfo: res.data
+              })
+            })
+        }
+      })
+      .catch(function (result) {
+        console.error(result)
+      })
+    
   },
 
   /**

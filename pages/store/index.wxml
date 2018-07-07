@@ -3,10 +3,10 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-                    <image src="../../images/weui/images/pic_160.png" style="width: 50px; height: 50px; display: block"/>
+                    <image src="{{ storeInfo.thumb }}" style="width: 50px; height: 50px; display: block"/>
                 </view>
                 <view class="weui-cell__bd">
-                    <view>新视觉烧烤店{{ storeId }}</view>
+                    <view>{{ storeInfo.name }}</view>
                     <view style="font-size: 13px;color: #888888;">摘要信息</view>
                 </view>
             </view>
