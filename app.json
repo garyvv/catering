@@ -14,7 +14,11 @@
     "pages/common/qrcode",
     "pages/admin/seller/audit",
     "pages/common/login",
-    "pages/category/index"
+    "pages/category/index",
+    "pages/category/detail",
+    "pages/statistic/index",
+    "pages/pay/order",
+    "pages/customer/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
