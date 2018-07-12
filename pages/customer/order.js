@@ -1,19 +1,11 @@
-// pages/category/index.js
+// pages/customer/order.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    categories: [{
-      id: 1,
-      name: 'zao',
-    },
-    {
-      id: 2,
-      name: '晚',
-    },
-    ]
+  
   },
 
   /**

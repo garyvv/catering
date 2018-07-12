@@ -32,12 +32,12 @@ Page({
     {
       image: '../../images/weui/images/icon_tabbar.png',
       name: '收银台',
-      pages: ''
+      pages: '/pages/pay/order'
     },
     {
       image: '../../images/weui/images/icon_tabbar.png',
       name: '统计数据',
-      pages: ''
+      pages: '/pages/statistic/index'
     },
     ]
   },

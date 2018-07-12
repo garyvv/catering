@@ -1,5 +1,5 @@
-const SERVER = 'http://sharp.local.com/'
-// const SERVER = 'https://garylv.com/'
+// const SERVER = 'http://sharp.local.com/'
+const SERVER = 'https://garylv.com/'
 
 const CODE_NEED_LOGIN = 3001
 
@@ -47,6 +47,103 @@ const API_LIST = {
     urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId',
     dataMaker: options => options,
   },
+
+  // 商铺分类
+  listCategory: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/categories',
+    dataMaker: options => options,
+  },
+  firstCategory: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/categories/' + options.categoryId,
+    dataMaker: options => options,
+  },
+  createCategory: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/categories',
+    dataMaker: options => options,
+  },
+  updateCategory: {
+    method: 'PUT',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/categories/' + options.categoryId,
+    dataMaker: options => options,
+  },
+  deleteCategory: {
+    method: 'DELETE',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/categories/' + options.categoryId,
+    dataMaker: options => options,
+  },
+
+  // 商铺桌子
+  listDesk: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks',
+    dataMaker: options => options,
+  },
+  firstDesk: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks/' + options.deskId,
+    dataMaker: options => options,
+  },
+  createDesk: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks',
+    dataMaker: options => options,
+  },
+  updateDesk: {
+    method: 'PUT',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks/' + options.deskId,
+    dataMaker: options => options,
+  },
+  deleteDesk: {
+    method: 'DELETE',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks/' + options.deskId,
+    dataMaker: options => options,
+  },
+
+  // 商铺商品
+  listProduct: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/products',
+    dataMaker: options => options,
+  },
+  firstProduct: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/products/' + options.productId,
+    dataMaker: options => options,
+  },
+  createProduct: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/products',
+    dataMaker: options => options,
+  },
+  updateProduct: {
+    method: 'PUT',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/products/' + options.productId,
+    dataMaker: options => options,
+  },
+  deleteProduct: {
+    method: 'DELETE',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/products/' + options.productId,
+    dataMaker: options => options,
+  },
+
+  // -------- viewer --------
+  // 商铺分类
+  viewerCategory: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/viewers/:storeId/categories',
+    dataMaker: options => options,
+  },
+  // 商铺商品
+  viewerProduct: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/viewers/:storeId/categories',
+    dataMaker: options => options,
+  },
+
+  // ------ End -----
 }
 
 class API {
