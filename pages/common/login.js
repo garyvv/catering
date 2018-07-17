@@ -1,5 +1,6 @@
 // pages/common/login.js
 const WeChatSDK = require('../../utils/wechat_sdk.js')
+const app = getApp()
 Page({
 
   /**
@@ -65,17 +66,9 @@ Page({
   
   },
 
-  login: function () {
-    WeChatSDK.userLogin()
-      .then((result) => {
-        console.log(result)
-        console.log(this.data.redirectUrl)
-        wx.switchTab({
-          url: '/pages/store/index',
-        })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
+  getUserInfo: function (e) {
+    let userInfo = e.detail.userInfo
+    app.login(userInfo)
+  },
+
 })

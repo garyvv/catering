@@ -1,1 +1,6 @@
 /* pages/store/index.wxss */
+.icon-box {
+  background: #eee;
+  padding: 3px 15px;
+  color: #FFBE00;
+}
