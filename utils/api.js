@@ -47,7 +47,12 @@ const API_LIST = {
     urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId',
     dataMaker: options => options,
   },
-
+  // 商铺列表
+  storeList: {
+    method: 'GET',
+    urlMaker: options => SERVER + 'api/catering/v1/sellers/:uid/stores',
+    dataMaker: options => options,
+  },
   // 商铺分类
   listCategory: {
     method: 'GET',
@@ -205,11 +210,13 @@ module.exports = new API();
 
 function getHeader(replace = {}) {
   const app = getApp()
+  let uid = wx.getStorageSync('uid') ? wx.getStorageSync('uid') : app.globalData.uid
+  let token = wx.getStorageSync('token') ? wx.getStorageSync('token') : app.globalData.token
   let header = {
     'content-type': 'application/json', // 默认值
     'mina-source': 'catering',
-    'uid': app.globalData.uid,
-    'token': app.globalData.token,
+    'uid': uid,
+    'token': token,
     'store-id': app.globalData.storeId,
     'version': app.globalData.version
   }
@@ -223,7 +230,8 @@ function getHeader(replace = {}) {
 
 function getUid() {
   const app = getApp()
-  return app.globalData.uid
+  let uid = wx.getStorageSync('uid') ? wx.getStorageSync('uid') : app.globalData.uid
+  return uid
 }
 
 function getStoreId() {

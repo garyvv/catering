@@ -2,12 +2,10 @@
 const app = getApp()
 const Api = require('../../utils/api.js')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    storeId: 0,
     storeInfo: {},
     grids: [{
       image: '../../images/weui/images/icon_tabbar.png',
@@ -46,29 +44,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
-    let self = this
-    Api.customerInfo()
-      .then((res) => {
-        console.log(res)
-        self.setData({
-          storeId: res.data.default_store
-        })
-        if (res.data.default_store > 0) {
-          const app = getApp()
-          app.setStoreId(res.data.default_store)
-          Api.storeInfo()
-            .then( res => {
-              console.log(res)
-              self.setData({
-                storeInfo: res.data
-              })
-            })
-        }
-      })
-      .catch(function (result) {
-        console.error(result)
-      })
     
   },
 
@@ -83,7 +58,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let self = this
+    Api.storeList()
+      .then(res => {
+        console.log('store list', res)
+        self.setData({
+          storeInfo: res.data[0]
+        })
+      })
+      .catch(function (e) {
+        console.error(e)
+      })
   },
 
   /**
@@ -121,23 +106,4 @@ Page({
 
   },
 
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo
-    })
-    e.detail.userInfo.uid = app.globalData.uid
-    Api.editCustomer(e.detail.userInfo)
-      .then((res) => {
-        console.log(res)
-        // 跳转填写页面
-        wx.navigateTo({
-          url: '/pages/store/apply?name=' + e.detail.userInfo.nickName + '&avatar=' + e.detail.userInfo.avatarUrl,
-        })
-      })
-      .catch(function (result) {
-        console.error(result)
-      })
-  },
 })

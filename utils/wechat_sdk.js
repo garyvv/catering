@@ -11,15 +11,6 @@ module.exports = {
             Api.login(res)
             .then((result) => {
               let loginRes = result.data
-              console.log(loginRes)
-              console.log('login...')
-              //获取到用户凭证 存儲 3rd_session   
-              wx.setStorageSync('token', loginRes.token)
-              wx.setStorageSync('uid', loginRes.uid)
-              wx.setStorageSync('storeId', loginRes.default_store)
-              app.globalData.token = loginRes.token
-              app.globalData.uid = loginRes.uid
-              app.globalData.storeId = loginRes.default_store
               resolve(loginRes)
             })
             .catch(function (result){
