@@ -65,6 +65,7 @@ Page({
         self.setData({
           storeInfo: res.data[0]
         })
+        app.setStoreId(res.data[0].id)
       })
       .catch(function (e) {
         console.error(e)

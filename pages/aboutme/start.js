@@ -1,11 +1,18 @@
 //login.js
 //获取应用实例
 var app = getApp();
+var base64 = require("../../images/weui/images/base64");
 Page({
     data: {
-        remind: '加载中',
-        angle: 0,
-        userInfo: {}
+      headline: [{
+          id: 1,
+          image: base64.icon60,
+          url: 'https://garylv.com',
+          title: '头条',
+          target_type: 'webview',
+          desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
+        },
+      ]
     },
     goToIndex: function() {
         wx.switchTab({

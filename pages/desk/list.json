@@ -1,1 +1,8 @@
-{}
+{
+  "navigationBarTitleText": "桌子管理",
+  "usingComponents": {
+    "i-button": "../../libs/dist/button/index",
+    "i-action-sheet": "../../libs/dist/action-sheet/index",
+    "i-message": "../../libs/dist/message/index"
+  }
+}

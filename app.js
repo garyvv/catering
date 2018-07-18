@@ -17,6 +17,7 @@ App({
     },
 
     setStoreId: function (storeId) {
+      wx.setStorageSync('storeId', storeId)
       this.globalData.storeId = storeId
     },
 
@@ -41,7 +42,6 @@ App({
           //获取到用户凭证 存儲 3rd_session   
           wx.setStorageSync('token', result.token)
           wx.setStorageSync('uid', result.uid)
-          wx.setStorageSync('storeId', result.default_store)
           this.globalData.token = result.token
           this.globalData.uid = result.uid
           this.globalData.storeId = result.default_store

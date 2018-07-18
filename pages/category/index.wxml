@@ -1,8 +1,36 @@
-<block wx:for="{{categories}}" wx:key="*this">
-    <navigator url="/pages/category/detail?id={{ item.id }}" class="weui-cell weui-cell_access">
-        <view class="weui-cell__bd">
-            <view style="display: inline-block; vertical-align: middle">{{ item.name }}</view>
-        </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-</block>
+<view class="page">
+  <i-message id="message" />
+  <view class="page__bd page__bd_spacing">
+    <view class="button-sp-area">
+      <i-button bind:click="showDialogBtn" type="success">+ 新增分类菜单</i-button>
+    </view>
+  </view>
+  <block wx:for="{{categories}}" wx:key="*this">
+      <view bindtap="handleOpen" data-id='{{ item.id }}' data-name='{{ item.name }}' class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd">
+            <view style="display: inline-block; vertical-align: middle">
+              {{ item.name }}
+            </view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+  </block>
+</view>
+
+<!-- action sheet  -->
+<i-action-sheet visible="{{ visible }}" actions="{{ actions }}"  show-cancel bind:cancel="handleCancel"  bind:click="handleClick" />
+
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">输入分类菜单名称</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="text" maxlength="10" bindinput="inputChange" class="input" value='{{ handleCategoryName }}' placeholder="输入分类菜单名称"></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>

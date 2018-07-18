@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": false,
 		"minified": true,
@@ -52,6 +52,18 @@
 					"name": "登录",
 					"pathName": "pages/common/login",
 					"query": "url=/pages/store/index"
+				},
+				{
+					"id": -1,
+					"name": "添加",
+					"pathName": "pages/category/form",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加category",
+					"pathName": "pages/category/index",
+					"query": ""
 				}
 			]
 		}
