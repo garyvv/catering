@@ -212,12 +212,13 @@ function getHeader(replace = {}) {
   const app = getApp()
   let uid = wx.getStorageSync('uid') ? wx.getStorageSync('uid') : app.globalData.uid
   let token = wx.getStorageSync('token') ? wx.getStorageSync('token') : app.globalData.token
+  let storeId = wx.getStorageSync('storeId') ? wx.getStorageSync('storeId') : app.globalData.storeId
   let header = {
     'content-type': 'application/json', // 默认值
     'mina-source': 'catering',
     'uid': uid,
     'token': token,
-    'store-id': app.globalData.storeId,
+    'store-id': storeId,
     'version': app.globalData.version
   }
   if (replace) {
@@ -236,7 +237,8 @@ function getUid() {
 
 function getStoreId() {
   const app = getApp()
-  return app.globalData.storeId
+  let storeId = wx.getStorageSync('storeId') ? wx.getStorageSync('storeId') : app.globalData.storeId
+  return storeId
 }
 
 function generateNormalApi({ urlMaker, dataMaker, method = 'GET', headerMaker, needLogin = true, uploadApi = false }) { // 默认所有API都需要登录
