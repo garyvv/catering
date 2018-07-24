@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarTitleText": "菜品管理",
+  "usingComponents": {
+    "i-card": "../../libs/dist/card/index",
+    "i-button": "../../libs/dist/button/index"
+  }
+}
