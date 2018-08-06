@@ -1,5 +1,5 @@
-const SERVER = 'http://sharp.local.com/'
-// const SERVER = 'https://garylv.com/'
+// const SERVER = 'http://sharp.local.com/'
+const SERVER = 'https://garylv.com/'
 
 const CODE_NEED_LOGIN = 3001
 
