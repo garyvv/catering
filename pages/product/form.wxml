@@ -1,2 +1,54 @@
-<!--pages/product/form.wxml-->
-<text>pages/product/form.wxml</text>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+          <view class="weui-label">菜品图片</view>
+      </view>
+      <view class="weui-uploader__bd" style='padding: 10px'>
+        <view class="weui-uploader__file" style='float: none; margin: 0 auto' bindtap="chooseThumb" id="thumb">
+            <image class="weui-uploader__img" style='margin: 0 auto' src="{{ product.preview_thumb }}" mode="aspectFill" />
+        </view>
+    </view>              
+  </view>
+
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">菜品名称</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindTitle" class="weui-input" value='{{ product.title }}' placeholder="请输入菜品名称"/>
+        </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+          <view class="weui-label">价格</view>
+      </view>
+      <view class="weui-cell__bd">
+          <input bindinput="bindPrice" class="weui-input" value='{{ product.price }}' placeholder="请输入价格"/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label">备注</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input bindinput="bindDescription" class="weui-input" value='{{ product.description }}' placeholder="请输入备注" />
+        </view>              
+    </view>
+
+    <view wx:if="{{ product.id > 0 }}" class="weui-cell">
+      <view class="weui-cell__hd">
+          <view class="weui-label">状态</view>
+      </view>
+      <view class="weui-cell__bd">
+        <i-switch value="{{product.status == 1 ? true : false}}" size="large" bind:change="changeStatus" slot="footer">
+            <view slot="open">上架</view>
+            <view slot="close">下架</view>
+        </i-switch>
+      </view>
+    </view>
+ 
+</view>
+
+<button class="weui-btn" type="primary" bindtap="submit">确认提交</button>

@@ -3,10 +3,14 @@
     <i-button type="success">+ 新增菜品</i-button>
   </navigator>
   
-  <navigator style='margin-bottom: 15px' url="/pages/product/detail?productId={{ item.id }}" wx:for="{{products}}" wx:key="*this">
-    <i-card title="{{ item.title }}" extra="¥ {{ item.price }}" thumb="{{ item.thumb }}">
+  <navigator style='margin-bottom: 15px' url="/pages/product/form?productId={{ item.id }}" wx:for="{{products}}" wx:key="*this">
+    <i-card title="{{ item.title }}" extra="¥ {{ item.price }}" thumb="{{ item.preview_thumb }}">
         <view slot="content">{{ item.description }}</view>
-        <view slot="footer">销量：{{ item.sales_volume }}   状态：{{ item.status_text }}</view>
+        <view slot="footer">
+        <text style='float:right;' >状态：<text style='color: {{ item.status == 1 ? "green" : "#eee" }}'>{{ item.status_text }}</text>
+        </text>
+        <text>销量：{{ item.sales_volume }}</text>  
+        </view>
     </i-card>
   </navigator>
 </view>
