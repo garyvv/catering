@@ -1,13 +1,16 @@
 <view class="weui-panel__bd">
-    <block wx:for="{{products}}" wx:key="*this">
-        <navigator url="/pages/product/detail?productId={{ item.id }}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <image class="weui-media-box__thumb" src="{{ item.image }}" />
-            </view>
-            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                <view class="weui-media-box__title">{{ item.title }}</view>
-                <view class="weui-media-box__desc">{{ item.desc }}</view>
-            </view>
-        </navigator>
-    </block>
+  <navigator url='/pages/product/form' class="button-sp-area">
+    <i-button type="success">+ 新增菜品</i-button>
+  </navigator>
+  
+  <navigator style='margin-bottom: 15px' url="/pages/product/form?productId={{ item.id }}" wx:for="{{products}}" wx:key="*this">
+    <i-card title="{{ item.title }}" extra="¥ {{ item.price }}" thumb="{{ item.preview_thumb }}">
+        <view slot="content">{{ item.description }}</view>
+        <view slot="footer">
+        <text style='float:right;' >状态：<text style='color: {{ item.status == 1 ? "green" : "#eee" }}'>{{ item.status_text }}</text>
+        </text>
+        <text>销量：{{ item.sales_volume }}</text>  
+        </view>
+    </i-card>
+  </navigator>
 </view>

@@ -1,6 +1,10 @@
 /**app.wxss**/
 
 @import "./style/weui.wxss";
+page{
+    background: #f9f9f9;
+}
+
 .container {
     height: 100%;
     display: flex;
@@ -16,4 +20,13 @@
 
 .block-margin {
     margin-top: 20px;
+}
+
+.button-sp-area{
+    margin: 10px auto;
+    width: 60%;
+}
+.show-btn {
+  margin-top: 100rpx;
+  color: #22cc22;
 }

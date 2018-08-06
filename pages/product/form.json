@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "菜品详情",
+  "usingComponents": {
+    "i-switch": "../../libs/dist/switch/index",
+    "i-cell": "../../libs/dist/cell/index"
+  }
+}

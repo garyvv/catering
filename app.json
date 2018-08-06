@@ -18,7 +18,8 @@
     "pages/category/detail",
     "pages/statistic/index",
     "pages/pay/order",
-    "pages/customer/order"
+    "pages/customer/order",
+    "pages/product/form"
   ],
   "window": {
     "backgroundTextStyle": "light",
