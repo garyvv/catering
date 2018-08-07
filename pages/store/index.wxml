@@ -1,7 +1,8 @@
 <view class="page">
   <navigator url="/pages/store/apply?name={{ storeInfo.name }}&avatar={{ storeInfo.thumb }}"  class='icon-box' wx:if="{{ storeInfo.approve_status == 0}}"> 
-  <icon type="warn" size="20" color="#FFBE00"></icon>
-  您的店铺未认证 
+    <i-notice-bar icon="systemprompt" backgroundcolor="#99cc66" color="#ffff66" loop>
+        您的店铺未认证 
+    </i-notice-bar>
   </navigator>
   <view class="page__bd">
       <view class="weui-cells weui-cells_after-title">

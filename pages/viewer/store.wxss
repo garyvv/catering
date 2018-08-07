@@ -1,1 +1,12 @@
 /* pages/viewer/store.wxss */
+.demo-container{
+	width:25vw;
+	height: 100vh;
+	background:#fff;
+}
+.container-right {
+  width: 75vw;
+  height: 100vh;
+  background: #eee;
+  padding-top: 10px;
+}

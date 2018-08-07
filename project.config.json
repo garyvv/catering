@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -68,7 +68,21 @@
 				{
 					"id": -1,
 					"name": "商品管理",
-					"pathName": "pages/product/list"
+					"pathName": "pages/product/list",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "桌子二维码",
+					"pathName": "pages/desk/qrcode",
+					"query": "deskId=2&name=桌子222"
+				},
+				{
+					"id": -1,
+					"name": "扫码",
+					"pathName": "pages/viewer/store",
+					"query": "desk_id=2&store_id=1",
+					"scene": "1011"
 				}
 			]
 		}

@@ -1,5 +1,11 @@
 /* pages/desk/qrcode.wxss */
-
-.share-image {
-    height: 240px;
+.qrcode-item {
+    width: 100%;
+    height: 320px;
+    padding-top: 20px;
+    text-align: center;
+}
+.qrcode-item>image {
+  height: 280px;
+  width: 280px;
 }
