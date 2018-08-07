@@ -1,2 +1,7 @@
-<image class="share-image" src="/images/weui/images/logo.png"></image>
-<text>二维码已保存到本地</text>
+<view style='text-align: center;margin-top: 15px;background-color: #eee;color: #666'>{{ deskName }}</view>
+<view class='qrcode-item'>
+  <image src="{{ qrcode }}"></image>
+</view>
+<i-button bind:click="saveQRCodeToTerminal" type="success">保存二维码到系统相册</i-button>
+
+<i-toast id="toast" />

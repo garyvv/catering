@@ -106,6 +106,11 @@ const API_LIST = {
     urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desks/' + options.deskId,
     dataMaker: options => options,
   },
+  deskQRCode: {
+    method: 'POST',
+    urlMaker: options => SERVER + 'api/catering/v1/stores/:storeId/desk_qrcodes/' + options.deskId,
+    dataMaker: options => options,
+  },
 
   // 商铺商品
   listProduct: {
@@ -138,13 +143,13 @@ const API_LIST = {
   // 商铺分类
   viewerCategory: {
     method: 'GET',
-    urlMaker: options => SERVER + 'api/catering/v1/viewers/:storeId/categories',
+    urlMaker: options => SERVER + 'api/catering/v1/viewers/' + options.storeId + '/categories',
     dataMaker: options => options,
   },
   // 商铺商品
   viewerProduct: {
     method: 'GET',
-    urlMaker: options => SERVER + 'api/catering/v1/viewers/:storeId/categories',
+    urlMaker: options => SERVER + 'api/catering/v1/viewers/' + options.storeId + '/products',
     dataMaker: options => options,
   },
 

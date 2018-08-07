@@ -198,7 +198,7 @@ Page({
         break;
       case 1:// 生成二维码
         wx.navigateTo({
-          url: '/pages/common/qrcode?deskId=' + this.data.handleDeskId,
+          url: '/pages/desk/qrcode?deskId=' + this.data.handleDeskId + '&name=' + this.data.handleDeskName,
         })
         break;
       case 2://删除

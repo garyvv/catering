@@ -150,8 +150,8 @@ Page({
       Api.updateProduct(this.data.product)
         .then((res) => {
           console.log(res)
-          wx.navigateTo({
-            url: '/pages/product/list'
+          wx.navigateBack({
+            delta: 1
           })
         })
         .catch(function (result) {
@@ -161,8 +161,8 @@ Page({
       Api.createProduct(this.data.product)
         .then((res) => {
           console.log(res)
-          wx.navigateTo({
-            url: '/pages/product/list'
+          wx.navigateBack({
+            delta: 1
           })
         })
         .catch(function (result) {

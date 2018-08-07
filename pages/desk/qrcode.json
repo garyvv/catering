@@ -1,1 +1,7 @@
-{}
+{
+  "usingComponents": {
+    "i-button": "../../libs/dist/button/index",
+    "i-avatar": "../../libs/dist/avatar/index",
+    "i-toast": "../../libs/dist/toast/index"
+  }
+}

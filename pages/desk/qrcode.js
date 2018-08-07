@@ -1,18 +1,80 @@
 // pages/desk/qrcode.js
+const Api = require('../../utils/api.js')
+const { $Toast } = require('../../libs/dist/base/index');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    deskId: 0,
+    qrcode: '',
+    tmpFilePath: '',
+    deskName: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      deskName: options.name
+    })
+    if (options.deskId <= 0) {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
+    this.getQRCode(options.deskId)
+  },
+
+  getQRCode: function(deskId) {
+    let resData = {
+      deskId: deskId
+    }
+
+    const self = this
+    Api.deskQRCode(resData)
+      .then(res => {
+        console.log(res)
+        // 下载图片
+        wx.downloadFile({
+          url: res.data.url,
+          success: function (downRes) {
+            if (downRes.statusCode === 200) {
+              self.setData({
+                deskId: deskId,
+                qrcode: res.data.url,
+                tmpFilePath: downRes.tempFilePath
+              })
+            }
+          }
+        })
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  },
+
+  saveQRCodeToTerminal: function () {
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.tmpFilePath,
+      success(res) {
+        console.log(res)
+        $Toast({
+          content: '已保存到手机相册',
+          type: 'success'
+        });
+      },
+      fail(e){
+        console.log(e)
+        $Toast({
+          content: '已取消保存',
+          type: 'error'
+        });
+      }
+    })
   },
 
   /**

@@ -1,1 +1,9 @@
-{}
+{
+  "usingComponents": {
+    "i-drawer": "../../libs/dist/drawer/index",
+    "i-button": "../../libs/dist/button/index",
+    "i-cell": "../../libs/dist/cell/index",
+    "i-panel": "../../libs/dist/panel/index",
+    "i-card": "../../libs/dist/card/index"
+  }
+}

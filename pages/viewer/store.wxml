@@ -1,2 +1,22 @@
-<!--pages/viewer/store.wxml-->
-<text>pages/viewer/store.wxml</text>
+<view class="demo">
+  <i-drawer mode="left" visible="{{true}}" mask-closable="{{false}}">
+      <view class="demo-container">
+        <i-panel wx:for="{{categories}}" wx:key="index" class="cell-panel-demo">
+          <i-cell title="{{ item.name }}"></i-cell>
+        </i-panel>
+      </view>
+  </i-drawer>
+  <i-drawer mode="right" visible="{{true}}" mask-closable="{{false}}">
+    <view class="container-right">
+      <view wx:for="{{products}}" wx:key="index" style='margin-bottom: 10px'>
+        <i-card title="{{ item.title }}" extra="¥ {{ item.price }}" thumb="{{ item.preview_thumb }}">
+          <view slot="footer">
+            <text style='float:right;' >状态：<text style='color: {{ item.status == 1 ? "green" : "#eee" }}'>{{ item.status_text }}</text>
+            </text>
+            {{ item.description }}
+          </view>
+        </i-card>
+      </view>
+    </view>
+  </i-drawer>
+</view>
